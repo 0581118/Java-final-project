@@ -289,7 +289,27 @@ public class PitcherTeamApp extends Application {
                     /*
                     NOTE: ADD VALIDATION FOR THE REMAINING BOXES: Hits, Runs (not earned runs), 
                     Base on Balls, Strikeouts, At Bats, Batters faced, and # of pitches
+                    Edited by: Braden
                     */
+                    int hits, runs, walks, strikeouts, atBats, battersFaced, numPitches;
+
+                    try {
+                        hits = Integer.parseInt(hitsStr);
+                        runs = Integer.parseInt(runsStr);
+                        walks = Integer.parseInt(BaseOnBallsStr);
+                        strikeouts = Integer.parseInt(SOStr);
+                        atBats = Integer.parseInt(AtBatsStr);
+                        battersFaced = Integer.parseInt(BattFacedStr);
+                        numPitches = Integer.parseInt(NumPitchesStr);
+    
+                        if (hits < 0 || runs < 0 || walks < 0 || strikeouts < 0 || atBats < 0 || battersFaced < 0 || numPitches < 0) {
+                        showAlert(Alert.AlertType.ERROR, "Error", "Stat values cannot be negative in row " + rowIndex);
+                        return;
+                    }
+                } catch (NumberFormatException ex) {
+                    showAlert(Alert.AlertType.ERROR, "Error", "Invalid stat in row " + rowIndex);
+                    return;
+            }
                     
                     
                     // Create the Pitcher object from validated data.
